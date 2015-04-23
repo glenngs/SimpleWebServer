@@ -56,7 +56,7 @@ public class POSTRequest extends HttpRequest {
 			e.printStackTrace();
 		}
 	
-		return HttpResponseFactory.create200OK(file, Protocol.CLOSE);
+		return HttpResponseFactory.create200OKNoBody(Protocol.CLOSE);
 	}
 
 }

@@ -20,7 +20,6 @@
  */
 //
 
-
 //ITS THIS ONE 
 package protocol;
 
@@ -43,12 +42,12 @@ public abstract class HttpRequest {
 	private String version;
 	private Map<String, String> header;
 	private char[] body;
-	
+
 	protected HttpRequest() {
 		this.header = new HashMap<String, String>();
 		this.body = new char[0];
 	}
-	
+
 	/**
 	 * The request method.
 	 * 
@@ -69,12 +68,13 @@ public abstract class HttpRequest {
 
 	/**
 	 * The version of the http request.
+	 * 
 	 * @return the version
 	 */
 	public String getVersion() {
 		return version;
 	}
-	
+
 	public char[] getBody() {
 		return body;
 	}
@@ -90,13 +90,15 @@ public abstract class HttpRequest {
 	}
 
 	/**
-	 * Reads raw data from the supplied input stream and constructs a 
+	 * Reads raw data from the supplied input stream and constructs a
 	 * <tt>HttpRequest</tt> object out of the raw data.
 	 * 
-	 * @param inputStream The input stream to read from.
+	 * @param inputStream
+	 *            The input stream to read from.
 	 * @return A <tt>HttpRequest</tt> object.
-	 * @throws Exception Throws either {@link ProtocolException} for bad request or 
-	 * {@link IOException} for socket input stream read errors.
+	 * @throws Exception
+	 *             Throws either {@link ProtocolException} for bad request or
+	 *             {@link IOException} for socket input stream read errors.
 	 */
 	public static HttpRequest read(InputStream inputStream) throws Exception {
 		
@@ -126,6 +128,8 @@ public abstract class HttpRequest {
 			request = new POSTRequest();
 		} else if (method.equalsIgnoreCase(Protocol.PUT)) {
 			request = new PUTRequest();
+		} else if (method.equalsIgnoreCase(Protocol.DELETE)) {
+			request = new DELETERequest();
 		} else {
 			throw new ProtocolException(Protocol.BAD_REQUEST_CODE, Protocol.BAD_REQUEST_TEXT);
 		}
@@ -184,8 +188,7 @@ public abstract class HttpRequest {
 		
 		return request;
 	}
-	
-	
+
 	@Override
 	public String toString() {
 		StringBuffer buffer = new StringBuffer();
@@ -196,8 +199,8 @@ public abstract class HttpRequest {
 		buffer.append(Protocol.SPACE);
 		buffer.append(this.version);
 		buffer.append(Protocol.LF);
-		
-		for(Map.Entry<String, String> entry : this.header.entrySet()) {
+
+		for (Map.Entry<String, String> entry : this.header.entrySet()) {
 			buffer.append(entry.getKey());
 			buffer.append(Protocol.SEPERATOR);
 			buffer.append(Protocol.SPACE);
@@ -209,6 +212,6 @@ public abstract class HttpRequest {
 		buffer.append("----------------------------------\n");
 		return buffer.toString();
 	}
-	
+
 	public abstract HttpResponse generateResponse(String rootDirectory);
 }

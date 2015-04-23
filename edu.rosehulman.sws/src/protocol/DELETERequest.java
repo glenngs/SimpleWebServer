@@ -1,6 +1,6 @@
 /*
- * GETRequest.java
- * Apr 22, 2015
+ * DELETERequest.java
+ * Apr 23, 2015
  *
  * Simple Web Server (SWS) for EE407/507 and CS455/555
  * 
@@ -29,32 +29,43 @@
 package protocol;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.DirectoryNotEmptyException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 
 /**
  * 
- * @author Jack Petry
+ * @author Chandan R. Rupakheti (rupakhcr@clarkson.edu)
  */
-public class PUTRequest extends HttpRequest {
-	
-	public PUTRequest() {
+public class DELETERequest extends HttpRequest {
+
+	/**
+	 * 
+	 */
+	public DELETERequest() {
 		super();
 	}
 
+	/* (non-Javadoc)
+	 * @see protocol.HttpRequest#generateResponse(java.lang.String)
+	 */
 	@Override
 	public HttpResponse generateResponse(String rootDirectory) {
+		
 		File file = new File(rootDirectory + getUri());
-
+		
+		System.out.println(file.toPath());
+		
 		try {
-			FileWriter f = new FileWriter(file,true);
-			f.write(getBody());
-			f.close();
-		} catch (IOException e) {
-			e.printStackTrace();
+			Files.delete(file.toPath());
+		} catch (NoSuchFileException x) {
+			return HttpResponseFactory.create404NotFound(Protocol.CLOSE);
+		} catch (IOException x) {
+			x.printStackTrace();
+		    return HttpResponseFactory.create400BadRequest(Protocol.CLOSE);
 		}
-	
-		//TODO: This may not be the right response
+		
 		return HttpResponseFactory.create200OKNoBody(Protocol.CLOSE);
 	}
 

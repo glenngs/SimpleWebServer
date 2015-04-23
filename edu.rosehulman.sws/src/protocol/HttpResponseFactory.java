@@ -92,6 +92,14 @@ public class HttpResponseFactory {
 		return response;
 	}
 	
+	public static HttpResponse create200OKNoBody(String connection)
+	{
+		HttpResponse response = new HttpResponse(Protocol.VERSION, Protocol.OK_CODE, 
+				Protocol.OK_TEXT, new HashMap<String, String>(), null);
+		
+		return response;
+	}
+	
 	/**
 	 * Creates a {@link HttpResponse} object for sending bad request response.
 	 * 
