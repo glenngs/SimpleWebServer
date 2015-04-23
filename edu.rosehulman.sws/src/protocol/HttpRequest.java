@@ -37,14 +37,14 @@ import java.util.StringTokenizer;
  * 
  * @author Chandan R. Rupakheti (rupakhet@rose-hulman.edu)
  */
-public class HttpRequest {
+public abstract class HttpRequest {
 	private String method;
 	private String uri;
 	private String version;
 	private Map<String, String> header;
 	private char[] body;
 	
-	private HttpRequest() {
+	protected HttpRequest() {
 		this.header = new HashMap<String, String>();
 		this.body = new char[0];
 	}
@@ -99,8 +99,6 @@ public class HttpRequest {
 	 * {@link IOException} for socket input stream read errors.
 	 */
 	public static HttpRequest read(InputStream inputStream) throws Exception {
-		// We will fill this object with the data from input stream and return it
-		HttpRequest request = new HttpRequest();
 		
 		InputStreamReader inStreamReader = new InputStreamReader(inputStream);
 		BufferedReader reader = new BufferedReader(inStreamReader);
@@ -120,7 +118,18 @@ public class HttpRequest {
 			throw new ProtocolException(Protocol.BAD_REQUEST_CODE, Protocol.BAD_REQUEST_TEXT);
 		}
 		
-		request.method = tokenizer.nextToken();		// GET
+		String method = tokenizer.nextToken();// We will fill this object with the data from input stream and return it
+		HttpRequest request = null;
+		if (method.equalsIgnoreCase(Protocol.GET)) {
+			request = new GETRequest();
+		} else if (method.equalsIgnoreCase(Protocol.POST)) {
+			request = new POSTRequest();
+		} else if (method.equalsIgnoreCase(Protocol.PUT)) {
+			request = new PUTRequest();
+		} else {
+			throw new ProtocolException(Protocol.BAD_REQUEST_CODE, Protocol.BAD_REQUEST_TEXT);
+		}
+		request.method = method;					// GET
 		request.uri = tokenizer.nextToken();		// /somedir/page.html
 		request.version = tokenizer.nextToken();	// HTTP/1.1
 		
@@ -200,4 +209,6 @@ public class HttpRequest {
 		buffer.append("----------------------------------\n");
 		return buffer.toString();
 	}
+	
+	public abstract HttpResponse generateResponse(String rootDirectory);
 }
