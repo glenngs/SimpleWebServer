@@ -31,6 +31,9 @@ package protocol;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 /**
  * 
@@ -38,17 +41,48 @@ import java.io.IOException;
  */
 public class PUTRequest extends HttpRequest {
 	
+	private Map<String, String> parameters = new HashMap<String, String>();
+	
 	public PUTRequest() {
 		super();
 	}
 
+	private void parseBody() throws ProtocolException {
+		String body = new String(getBody());
+		String strippedTags = body.substring(body.indexOf(Protocol.CRLF) + 2, body.lastIndexOf(Protocol.CRLF,body.lastIndexOf(Protocol.CRLF)-1));
+
+		Scanner scanner = new Scanner(strippedTags);
+		String line = scanner.nextLine();
+		while(!line.equals("")) {
+			String[] broken = line.split(";");
+			for(String st: broken) {
+				String[] key_value = st.split(":|=");
+				if (key_value.length != 2) {
+					throw new ProtocolException(Protocol.BAD_REQUEST_CODE, Protocol.BAD_REQUEST_TEXT);
+				}
+				String key = key_value[0].trim();
+				String value = key_value[1].trim().replaceAll("^\"|\"$", "");
+				parameters.put(key, value);
+			}
+			line = scanner.nextLine();
+		}
+		scanner.useDelimiter("\\z");
+		parameters.put("body",scanner.next());
+	}
+
 	@Override
-	public HttpResponse generateResponse(String rootDirectory) {
-		File file = new File(rootDirectory + getUri());
+	public HttpResponse generateResponse(String rootDirectory) throws ProtocolException {
+		parseBody();
+		
+		if (!parameters.containsKey("body") || !parameters.containsKey("filename")) {
+			throw new ProtocolException(Protocol.BAD_REQUEST_CODE, Protocol.BAD_REQUEST_TEXT);
+		}
+		
+		File file = new File(rootDirectory + "/" + parameters.get("filename"));
 
 		try {
 			FileWriter f = new FileWriter(file,true);
-			f.write(getBody());
+			f.write(parameters.get("body"));
 			f.close();
 		} catch (IOException e) {
 			e.printStackTrace();

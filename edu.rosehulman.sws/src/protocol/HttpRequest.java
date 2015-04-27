@@ -133,19 +133,6 @@ public abstract class HttpRequest {
 			Class<?> requestClass = Class.forName("protocol."+methodCall + "Request");
 			HttpRequest request = (HttpRequest) requestClass.newInstance();
 
-			// if (method.equalsIgnoreCase(Protocol.GET)) {
-			// request = new GETRequest();
-			// } else if (method.equalsIgnoreCase(Protocol.POST)) {
-			// request = new POSTRequest();
-			// } else if (method.equalsIgnoreCase(Protocol.PUT)) {
-			// request = new PUTRequest();
-			// } else if (method.equalsIgnoreCase(Protocol.DELETE)) {
-			// request = new DELETERequest();
-			// } else {
-			// throw new ProtocolException(Protocol.BAD_REQUEST_CODE,
-			// Protocol.BAD_REQUEST_TEXT);
-			// }
-
 			request.method = methodCall; // GET
 			request.uri = tokenizer.nextToken(); // /somedir/page.html
 			request.version = tokenizer.nextToken(); // HTTP/1.1
@@ -242,5 +229,5 @@ public abstract class HttpRequest {
 		return buffer.toString();
 	}
 
-	public abstract HttpResponse generateResponse(String rootDirectory);
+	public abstract HttpResponse generateResponse(String rootDirectory) throws ProtocolException;
 }
