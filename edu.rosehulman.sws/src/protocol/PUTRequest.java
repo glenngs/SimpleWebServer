@@ -54,8 +54,8 @@ public class PUTRequest extends HttpRequest {
 			e.printStackTrace();
 		}
 	
-		//TODO: This may not be the right response
-		return HttpResponseFactory.create200OKNoBody(Protocol.CLOSE);
+		//TODO: Create better error responses
+		return new Response200(Protocol.CLOSE);
 	}
 
 }

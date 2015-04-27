@@ -57,21 +57,21 @@ public class GETRequest extends HttpRequest {
 				file = new File(location);
 				if(file.exists()) {
 					// Lets create 200 OK response
-					return HttpResponseFactory.create200OK(file, Protocol.CLOSE);
+					return new Response200(file, Protocol.CLOSE);
 				}
 				else {
 					// File does not exist so lets create 404 file not found code
-					return HttpResponseFactory.create404NotFound(Protocol.CLOSE);
+					return new Response404(Protocol.CLOSE);
 				}
 			}
 			else { // Its a file
 				// Lets create 200 OK response
-				return HttpResponseFactory.create200OK(file, Protocol.CLOSE);
+				return new Response200(file, Protocol.CLOSE);
 			}
 		}
 		else {
 			// File does not exist so lets create 404 file not found code
-			return HttpResponseFactory.create404NotFound(Protocol.CLOSE);
+			return new Response404(Protocol.CLOSE);
 		}
 	}
 

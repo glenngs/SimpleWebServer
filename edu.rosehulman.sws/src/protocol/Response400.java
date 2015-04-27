@@ -1,6 +1,6 @@
 /*
- * DELETERequest.java
- * Apr 23, 2015
+ * Response400.java
+ * Apr 26, 2015
  *
  * Simple Web Server (SWS) for EE407/507 and CS455/555
  * 
@@ -29,43 +29,33 @@
 package protocol;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.DirectoryNotEmptyException;
-import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 
  * @author Chandan R. Rupakheti (rupakhcr@clarkson.edu)
  */
-public class DELETERequest extends HttpRequest {
+public class Response400 extends HttpResponse {
 
 	/**
-	 * 
+	 * @param version
+	 * @param status
+	 * @param phrase
+	 * @param header
+	 * @param file
 	 */
-	public DELETERequest() {
-		super();
+	public Response400(String version, int status, String phrase,
+			Map<String, String> header, File file) {
+		super(version, status, phrase, header, file);
 	}
-
-	/* (non-Javadoc)
-	 * @see protocol.HttpRequest#generateResponse(java.lang.String)
-	 */
-	@Override
-	public HttpResponse generateResponse(String rootDirectory) {
+	
+	public Response400(String connection) {
+		this(Protocol.VERSION, Protocol.BAD_REQUEST_CODE, 
+				Protocol.BAD_REQUEST_TEXT, new HashMap<String, String>(), null);
 		
-		File file = new File(rootDirectory + getUri());
-		
-		System.out.println(file.toPath());
-		
-		try {
-			Files.delete(file.toPath());
-		} catch (Exception x) {
-			return new Response404(Protocol.CLOSE);
-		} 
-		
-		//TODO: Create better error responses
-		
-		return new Response200(Protocol.CLOSE);
+		// Lets fill up header fields with more information
+		fillGeneralHeader(this, connection);
 	}
 
 }
