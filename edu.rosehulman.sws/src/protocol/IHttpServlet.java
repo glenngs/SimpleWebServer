@@ -1,6 +1,6 @@
 /*
- * Response404.java
- * Apr 26, 2015
+ * IHttpServlet.java
+ * May 3, 2015
  *
  * Simple Web Server (SWS) for EE407/507 and CS455/555
  * 
@@ -28,35 +28,10 @@
  
 package protocol;
 
-import java.io.File;
-import java.io.OutputStream;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * 
  * @author Chandan R. Rupakheti (rupakhcr@clarkson.edu)
  */
-public class Response404 extends HttpResponse {
-
-	/**
-	 * @param version
-	 * @param status
-	 * @param phrase
-	 * @param header
-	 * @param file
-	 */
-	public Response404(String version, int status, String phrase,
-			Map<String, String> header, File file, OutputStream outStream) {
-		super(version, status, phrase, header, file, outStream);
-	}
-	
-	public Response404(String connection, OutputStream outStream) {
-		this(Protocol.VERSION, Protocol.NOT_FOUND_CODE, 
-				Protocol.NOT_FOUND_TEXT, new HashMap<String, String>(), null, outStream);
-		
-		// Lets fill up the header fields with more information
-		fillGeneralHeader(this, connection);
-	}
-
+public interface IHttpServlet {
+	public void handleResponse(HttpRequest httpRequest, HttpResponse httpResponse);
 }

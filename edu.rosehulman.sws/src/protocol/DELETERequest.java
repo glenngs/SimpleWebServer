@@ -28,11 +28,13 @@
  
 package protocol;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.DirectoryNotEmptyException;
-import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 
@@ -47,25 +49,32 @@ public class DELETERequest extends HttpRequest {
 		super();
 	}
 
-	/* (non-Javadoc)
-	 * @see protocol.HttpRequest#generateResponse(java.lang.String)
-	 */
-	@Override
-	public HttpResponse generateResponse(String rootDirectory) {
-		
-		File file = new File(rootDirectory + getUri());
-		
-		System.out.println(file.toPath());
-		
-		try {
-			Files.delete(file.toPath());
-		} catch (Exception x) {
-			return new Response404(Protocol.CLOSE);
-		} 
-		
-		//TODO: Create better error responses
-		
-		return new Response200(Protocol.CLOSE);
+	public void parseParameters() throws UnsupportedEncodingException {
+		String[] lines = new String(body).split(System.getProperty("line.separator"));
+		List<String> wordList = Arrays.asList(lines);
+		Iterator<String> i = wordList.iterator();
+		Pattern p = Pattern.compile("Content-Disposition: form-data; name=\"(.*)\"");
+		while(i.hasNext()) {
+			//ignore the first line
+			String line = i.next();
+			if(i.hasNext()) {
+				line = i.next();
+				Matcher m = p.matcher(line);
+				m.find();
+				String name = m.group(1);
+				line = i.next();
+				line = i.next();
+				String val = line;
+				parameters.put(URLDecoder.decode(name, "UTF-8"), URLDecoder.decode(val, "UTF-8"));
+			}
+		}
 	}
-
+	
+	public void finishInitialization() {
+		try {
+			parseParameters();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+	}
 }

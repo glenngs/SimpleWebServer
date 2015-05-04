@@ -28,7 +28,8 @@
  
 package protocol;
 
-import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 /**
  * 
@@ -39,39 +40,28 @@ public class GETRequest extends HttpRequest {
 	public GETRequest() {
 		super();
 	}
-
-	@Override
-	public HttpResponse generateResponse(String rootDirectory) {
-//		Map<String, String> header = request.getHeader();
-//		String date = header.get("if-modified-since");
-//		String hostName = header.get("host");
-//		
-		// Handling GET request here
-		// Combine them together to form absolute file path
-		File file = new File(rootDirectory + getUri());
-		// Check if the file exists
-		if(file.exists()) {
-			if(file.isDirectory()) {
-				// Look for default index.html file in a directory
-				String location = rootDirectory + getUri() + System.getProperty("file.separator") + Protocol.DEFAULT_FILE;
-				file = new File(location);
-				if(file.exists()) {
-					// Lets create 200 OK response
-					return new Response200(file, Protocol.CLOSE);
-				}
-				else {
-					// File does not exist so lets create 404 file not found code
-					return new Response404(Protocol.CLOSE);
-				}
-			}
-			else { // Its a file
-				// Lets create 200 OK response
-				return new Response200(file, Protocol.CLOSE);
-			}
-		}
-		else {
-			// File does not exist so lets create 404 file not found code
-			return new Response404(Protocol.CLOSE);
+	
+	public void parseParameters() throws UnsupportedEncodingException {
+	    if (!this.uri.contains("?")) {
+	    	return;
+	    }
+	    String[] split = this.uri.split("\\?");
+	    this.uri = split[0];
+	    String query = split[1];
+	    String[] pairs = query.split("&");
+	    for (String pair : pairs) {
+	        int idx = pair.indexOf("=");
+	        parameters.put(URLDecoder.decode(pair.substring(0, idx), "UTF-8"), URLDecoder.decode(pair.substring(idx + 1), "UTF-8"));
+	    }
+	    
+	    
+	}
+	
+	public void finishInitialization() {
+		try {
+			parseParameters();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
 		}
 	}
 

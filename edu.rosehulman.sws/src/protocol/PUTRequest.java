@@ -31,9 +31,17 @@ package protocol;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 
@@ -41,55 +49,36 @@ import java.util.Scanner;
  */
 public class PUTRequest extends HttpRequest {
 	
-	private Map<String, String> parameters = new HashMap<String, String>();
-	
 	public PUTRequest() {
 		super();
 	}
 
-	private void parseBody() throws ProtocolException {
-		String body = new String(getBody());
-		String strippedTags = body.substring(body.indexOf(Protocol.CRLF) + 2, body.lastIndexOf(Protocol.CRLF,body.lastIndexOf(Protocol.CRLF)-1));
-
-		Scanner scanner = new Scanner(strippedTags);
-		String line = scanner.nextLine();
-		while(!line.equals("")) {
-			String[] broken = line.split(";");
-			for(String st: broken) {
-				String[] key_value = st.split(":|=");
-				if (key_value.length != 2) {
-					throw new ProtocolException(Protocol.BAD_REQUEST_CODE, Protocol.BAD_REQUEST_TEXT);
-				}
-				String key = key_value[0].trim();
-				String value = key_value[1].trim().replaceAll("^\"|\"$", "");
-				parameters.put(key, value);
+	public void parseParameters() throws UnsupportedEncodingException {
+		String[] lines = new String(body).split(System.getProperty("line.separator"));
+		List<String> wordList = Arrays.asList(lines);
+		Iterator<String> i = wordList.iterator();
+		Pattern p = Pattern.compile("Content-Disposition: form-data; name=\"(.*)\"");
+		while(i.hasNext()) {
+			//ignore the first line
+			String line = i.next();
+			if(i.hasNext()) {
+				line = i.next();
+				Matcher m = p.matcher(line);
+				m.find();
+				String name = m.group(1);
+				line = i.next();
+				line = i.next();
+				String val = line;
+				parameters.put(URLDecoder.decode(name, "UTF-8"), URLDecoder.decode(val, "UTF-8"));
 			}
-			line = scanner.nextLine();
 		}
-		scanner.useDelimiter("\\z");
-		parameters.put("body",scanner.next());
 	}
-
-	@Override
-	public HttpResponse generateResponse(String rootDirectory) throws ProtocolException {
-		parseBody();
-		
-		if (!parameters.containsKey("body") || !parameters.containsKey("filename")) {
-			throw new ProtocolException(Protocol.BAD_REQUEST_CODE, Protocol.BAD_REQUEST_TEXT);
-		}
-		
-		File file = new File(rootDirectory + "/" + parameters.get("filename"));
-
+	
+	public void finishInitialization() {
 		try {
-			FileWriter f = new FileWriter(file,true);
-			f.write(parameters.get("body"));
-			f.close();
-		} catch (IOException e) {
+			parseParameters();
+		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-	
-		//TODO: Create better error responses
-		return new Response200(Protocol.CLOSE);
 	}
-
 }

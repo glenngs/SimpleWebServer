@@ -29,6 +29,7 @@
 package protocol;
 
 import java.io.File;
+import java.io.OutputStream;
 import java.net.FileNameMap;
 import java.net.URLConnection;
 import java.util.Date;
@@ -44,13 +45,13 @@ public class Response200 extends HttpResponse {
 	/**
 	 * 
 	 */
-	public Response200(String version, int status, String phrase, Map<String, String> header, File file) {
-		super(version,status,phrase,header,file);
+	public Response200(String version, int status, String phrase, Map<String, String> header, File file, OutputStream outStream) {
+		super(version,status,phrase,header,file, outStream);
 	}
 	
-	public Response200(File file, String connection) {
+	public Response200(File file, String connection, OutputStream outStream) {
 		this(Protocol.VERSION, Protocol.OK_CODE, 
-				Protocol.OK_TEXT, new HashMap<String, String>(), file);
+				Protocol.OK_TEXT, new HashMap<String, String>(), file, outStream);
 		
 		// Lets fill up header fields with more information
 		fillGeneralHeader(this, connection);
@@ -75,10 +76,10 @@ public class Response200 extends HttpResponse {
 		}
 	}
 	
-	public Response200(String connection)
+	public Response200(String connection, OutputStream outStream)
 	{
 		super(Protocol.VERSION, Protocol.OK_CODE, 
-				Protocol.OK_TEXT, new HashMap<String, String>(), null);
+				Protocol.OK_TEXT, new HashMap<String, String>(), null, outStream);
 		
 		// Lets fill up header fields with more information
 		fillGeneralHeader(this, connection);

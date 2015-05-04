@@ -23,6 +23,7 @@ package server;
 
 import gui.WebServer;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -42,18 +43,25 @@ public class Server implements Runnable {
 	private long connections;
 	private long serviceTime;
 	
+	RouteDispatcher dispatch;
+	
 	private WebServer window;
 	/**
 	 * @param rootDirectory
 	 * @param port
+	 * @throws IOException 
 	 */
-	public Server(String rootDirectory, int port, WebServer window) {
+	public Server(String rootDirectory, int port, WebServer window) throws IOException {
 		this.rootDirectory = rootDirectory;
 		this.port = port;
 		this.stop = false;
 		this.connections = 0;
 		this.serviceTime = 0;
 		this.window = window;
+		
+		dispatch = new RouteDispatcher(rootDirectory);
+		
+		(new Thread(dispatch)).start();
 	}
 
 	/**

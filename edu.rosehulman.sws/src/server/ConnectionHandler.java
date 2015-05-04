@@ -29,7 +29,9 @@ import protocol.HttpRequest;
 import protocol.HttpResponse;
 import protocol.Protocol;
 import protocol.ProtocolException;
+import protocol.Response200;
 import protocol.Response400;
+import protocol.Response404;
 
 /**
  * This class is responsible for handling a incoming request
@@ -100,20 +102,20 @@ public class ConnectionHandler implements Runnable {
 			// Protocol.BAD_REQUEST_CODE and Protocol.NOT_SUPPORTED_CODE
 			int status = pe.getStatus();
 			if(status == Protocol.BAD_REQUEST_CODE) {
-				response = new Response400(Protocol.CLOSE);
+				response = new Response400(Protocol.CLOSE, outStream);
 			}
 			// TODO: Handle version not supported code as well
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 			// For any other error, we will create bad request response as well
-			response = new Response400(Protocol.CLOSE);
+			response = new Response400(Protocol.CLOSE, outStream);
 		}
 		
 		if(response != null) {
 			// Means there was an error, now write the response object to the socket
 			try {
-				response.write(outStream);
+				response.writeHeader();
 //				System.out.println(response);
 			}
 			catch(Exception e){
@@ -140,8 +142,12 @@ public class ConnectionHandler implements Runnable {
 				// TODO: Fill in the rest of the code here
 			}
 			else {
-				String rootDirectory = server.getRootDirectory();
-				response = request.generateResponse(rootDirectory);
+				response = new Response200(Protocol.CLOSE, outStream);
+				try {
+					server.dispatch.dispatchRoute(request, response);
+				} catch (NullPointerException e) {
+					response = new Response404(Protocol.CLOSE, outStream);
+				}
 			}
 		}
 		catch(Exception e) {
@@ -153,12 +159,12 @@ public class ConnectionHandler implements Runnable {
 		// So this is a temporary patch for that problem and should be removed
 		// after a response object is created for protocol version mismatch.
 		if(response == null) {
-			response = new Response400(Protocol.CLOSE);
+			response = new Response400(Protocol.CLOSE, outStream);
 		}
 		
 		try{
 			// Write response and we are all done so close the socket
-			response.write(outStream);
+			response.writeHeader();
 //			System.out.println(response);
 			socket.close();
 		}

@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/lgpl.html>.
  * 
  */
- 
+
 package protocol;
 
 import java.io.BufferedInputStream;
@@ -42,23 +42,31 @@ public abstract class HttpResponse {
 	private String phrase;
 	private Map<String, String> header;
 	private File file;
+	private BufferedOutputStream out;
+	private boolean headerHandled = false;
 
-	
 	/**
 	 * Constructs a HttpResponse object using supplied parameter
 	 * 
-	 * @param version The http version.
-	 * @param status The response status.
-	 * @param phrase The response status phrase.
-	 * @param header The header field map.
-	 * @param file The file to be sent.
+	 * @param version
+	 *            The http version.
+	 * @param status
+	 *            The response status.
+	 * @param phrase
+	 *            The response status phrase.
+	 * @param header
+	 *            The header field map.
+	 * @param file
+	 *            The file to be sent.
 	 */
-	public HttpResponse(String version, int status, String phrase, Map<String, String> header, File file) {
+	public HttpResponse(String version, int status, String phrase,
+			Map<String, String> header, File file, OutputStream outStream) {
 		this.version = version;
 		this.status = status;
 		this.phrase = phrase;
 		this.header = header;
 		this.file = file;
+		this.out = new BufferedOutputStream(outStream, Protocol.CHUNK_LENGTH);
 	}
 
 	/**
@@ -72,6 +80,7 @@ public abstract class HttpResponse {
 
 	/**
 	 * Gets the status code of the response object.
+	 * 
 	 * @return the status
 	 */
 	public int getStatus() {
@@ -86,7 +95,7 @@ public abstract class HttpResponse {
 	public String getPhrase() {
 		return phrase;
 	}
-	
+
 	/**
 	 * The file to be sent.
 	 * 
@@ -98,6 +107,7 @@ public abstract class HttpResponse {
 
 	/**
 	 * Returns the header fields associated with the response object.
+	 * 
 	 * @return the header
 	 */
 	public Map<String, String> getHeader() {
@@ -107,34 +117,63 @@ public abstract class HttpResponse {
 
 	/**
 	 * Maps a key to value in the header map.
-	 * @param key A key, e.g. "Host"
-	 * @param value A value, e.g. "www.rose-hulman.edu"
+	 * 
+	 * @param key
+	 *            A key, e.g. "Host"
+	 * @param value
+	 *            A value, e.g. "www.rose-hulman.edu"
 	 */
 	public void put(String key, String value) {
 		this.header.put(key, value);
 	}
-	
+
 	/**
 	 * Writes the data of the http response object to the output stream.
 	 * 
-	 * @param outStream The output stream
+	 * @param outStream
+	 *            The output stream
 	 * @throws Exception
 	 */
-	public void write(OutputStream outStream) throws Exception {
-		BufferedOutputStream out = new BufferedOutputStream(outStream, Protocol.CHUNK_LENGTH);
+	public void write() throws Exception {
+		writeHeader();
 
+		// We are reading a file
+		if (this.getStatus() == Protocol.OK_CODE && file != null) {
+			// Process text documents
+			FileInputStream fileInStream = new FileInputStream(file);
+			BufferedInputStream inStream = new BufferedInputStream(
+					fileInStream, Protocol.CHUNK_LENGTH);
+
+			byte[] buffer = new byte[Protocol.CHUNK_LENGTH];
+			int bytesRead = 0;
+			// While there is some bytes to read from file, read each chunk and
+			// send to the socket out stream
+			while ((bytesRead = inStream.read(buffer)) != -1) {
+				out.write(buffer, 0, bytesRead);
+			}
+			// Close the file input stream, we are done reading
+			inStream.close();
+		}
+
+		// Flush the data so that outStream sends everything through the socket
+		out.flush();
+	}
+
+	public void writeHeader() throws Exception {
 		// First status line
-		String line = this.version + Protocol.SPACE + this.status + Protocol.SPACE + this.phrase + Protocol.CRLF;
+		String line = this.version + Protocol.SPACE + this.status
+				+ Protocol.SPACE + this.phrase + Protocol.CRLF;
 		out.write(line.getBytes());
-		
+
 		// Write header fields if there is something to write in header field
-		if(header != null && !header.isEmpty()) {
-			for(Map.Entry<String, String> entry : header.entrySet()) {
+		if (header != null && !header.isEmpty()) {
+			for (Map.Entry<String, String> entry : header.entrySet()) {
 				String key = entry.getKey();
 				String value = entry.getValue();
-				
+
 				// Write each header field line
-				line = key + Protocol.SEPERATOR + Protocol.SPACE + value + Protocol.CRLF;
+				line = key + Protocol.SEPERATOR + Protocol.SPACE + value
+						+ Protocol.CRLF;
 				out.write(line.getBytes());
 			}
 		}
@@ -142,26 +181,18 @@ public abstract class HttpResponse {
 		// Write a blank line
 		out.write(Protocol.CRLF.getBytes());
 
-		// We are reading a file
-		if(this.getStatus() == Protocol.OK_CODE && file != null) {
-			// Process text documents
-			FileInputStream fileInStream = new FileInputStream(file);
-			BufferedInputStream inStream = new BufferedInputStream(fileInStream, Protocol.CHUNK_LENGTH);
-			
-			byte[] buffer = new byte[Protocol.CHUNK_LENGTH];
-			int bytesRead = 0;
-			// While there is some bytes to read from file, read each chunk and send to the socket out stream
-			while((bytesRead = inStream.read(buffer)) != -1) {
-				out.write(buffer, 0, bytesRead);
-			}
-			// Close the file input stream, we are done reading
-			inStream.close();
-		}
-		
-		// Flush the data so that outStream sends everything through the socket 
 		out.flush();
+
+		this.headerHandled = true;
 	}
-	
+
+	public BufferedOutputStream getWriter() throws Exception {
+		if (!this.headerHandled) {
+			writeHeader();
+		}
+		return out;
+	}
+
 	@Override
 	public String toString() {
 		StringBuffer buffer = new StringBuffer();
@@ -172,38 +203,44 @@ public abstract class HttpResponse {
 		buffer.append(Protocol.SPACE);
 		buffer.append(this.phrase);
 		buffer.append(Protocol.LF);
-		
-		for(Map.Entry<String, String> entry : this.header.entrySet()) {
+
+		for (Map.Entry<String, String> entry : this.header.entrySet()) {
 			buffer.append(entry.getKey());
 			buffer.append(Protocol.SEPERATOR);
 			buffer.append(Protocol.SPACE);
 			buffer.append(entry.getValue());
 			buffer.append(Protocol.LF);
 		}
-		
+
 		buffer.append(Protocol.LF);
-		if(file != null) {
+		if (file != null) {
 			buffer.append("Data: ");
 			buffer.append(this.file.getAbsolutePath());
 		}
 		buffer.append("\n----------------------------------\n");
 		return buffer.toString();
 	}
-	
+
 	/**
-	 * Convenience method for adding general header to the supplied response object.
+	 * Convenience method for adding general header to the supplied response
+	 * object.
 	 * 
-	 * @param response The {@link HttpResponse} object whose header needs to be filled in.
-	 * @param connection Supported values are {@link Protocol#OPEN} and {@link Protocol#CLOSE}.
+	 * @param response
+	 *            The {@link HttpResponse} object whose header needs to be
+	 *            filled in.
+	 * @param connection
+	 *            Supported values are {@link Protocol#OPEN} and
+	 *            {@link Protocol#CLOSE}.
 	 */
-	protected static void fillGeneralHeader(HttpResponse response, String connection) {
+	protected static void fillGeneralHeader(HttpResponse response,
+			String connection) {
 		// Lets add Connection header
 		response.put(Protocol.CONNECTION, connection);
 
 		// Lets add current date
 		Date date = Calendar.getInstance().getTime();
 		response.put(Protocol.DATE, date.toString());
-		
+
 		// Lets add server info
 		response.put(Protocol.Server, Protocol.getServerInfo());
 

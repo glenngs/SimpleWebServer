@@ -31,6 +31,8 @@ package protocol;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -41,55 +43,28 @@ import java.util.Scanner;
  */
 public class POSTRequest extends HttpRequest {
 	
-	private Map<String, String> parameters = new HashMap<String, String>();
-		
 	public POSTRequest() {
 		super();		
 	}
 	
-	private void parseBody() throws ProtocolException {
-		String body = new String(getBody());
-		String strippedTags = body.substring(body.indexOf(Protocol.CRLF) + 2, body.lastIndexOf(Protocol.CRLF,body.lastIndexOf(Protocol.CRLF)-1));
-
-		Scanner scanner = new Scanner(strippedTags);
-		String line = scanner.nextLine();
-		while(!line.equals("")) {
-			String[] broken = line.split(";");
-			for(String st: broken) {
-				String[] key_value = st.split(":|=");
-				if (key_value.length != 2) {
-					throw new ProtocolException(Protocol.BAD_REQUEST_CODE, Protocol.BAD_REQUEST_TEXT);
-				}
-				String key = key_value[0].trim();
-				String value = key_value[1].trim().replaceAll("^\"|\"$", "");
-				parameters.put(key, value);
-			}
-			line = scanner.nextLine();
-		}
-		scanner.useDelimiter("\\z");
-		parameters.put("body",scanner.next());
+	public void parseParameters() throws UnsupportedEncodingException {
+	    System.out.println(new String(body));
+	    String[] pairs = new String(body).split("&");
+	    for (String pair : pairs) {
+	        int idx = pair.indexOf("=");
+	        parameters.put(URLDecoder.decode(pair.substring(0, idx), "UTF-8"), URLDecoder.decode(pair.substring(idx + 1), "UTF-8"));
+	    }
+	    
+	    
 	}
-
-	@Override
-	public HttpResponse generateResponse(String rootDirectory) throws ProtocolException {
-		parseBody();
-		
-		if (!parameters.containsKey("body") || !parameters.containsKey("filename")) {
-			throw new ProtocolException(Protocol.BAD_REQUEST_CODE, Protocol.BAD_REQUEST_TEXT);
-		}
-		
-		File file = new File(rootDirectory + "/" + parameters.get("filename"));
-
+	
+	public void finishInitialization() {
 		try {
-			FileWriter f = new FileWriter(file,false);
-			f.write(parameters.get("body"));
-			f.close();
-		} catch (IOException e) {
+			parseParameters();
+		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-	
-		//TODO: Create better error responses
-		return new Response200(Protocol.CLOSE);
 	}
 
+	
 }

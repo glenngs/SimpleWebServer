@@ -29,6 +29,7 @@
 package protocol;
 
 import java.io.File;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,13 +47,13 @@ public class Response400 extends HttpResponse {
 	 * @param file
 	 */
 	public Response400(String version, int status, String phrase,
-			Map<String, String> header, File file) {
-		super(version, status, phrase, header, file);
+			Map<String, String> header, File file, OutputStream outStream) {
+		super(version, status, phrase, header, file, outStream);
 	}
 	
-	public Response400(String connection) {
+	public Response400(String connection, OutputStream outStream) {
 		this(Protocol.VERSION, Protocol.BAD_REQUEST_CODE, 
-				Protocol.BAD_REQUEST_TEXT, new HashMap<String, String>(), null);
+				Protocol.BAD_REQUEST_TEXT, new HashMap<String, String>(), null, outStream);
 		
 		// Lets fill up header fields with more information
 		fillGeneralHeader(this, connection);

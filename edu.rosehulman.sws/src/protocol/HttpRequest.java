@@ -39,13 +39,13 @@ import java.util.StringTokenizer;
  */
 public abstract class HttpRequest {
 	private String method;
-	private String uri;
+	String uri;
 	private String version;
-	private Map<String, String> header;
-	private char[] body;
+	Map<String, String> parameters;
+	protected char[] body;
 
 	protected HttpRequest() {
-		this.header = new HashMap<String, String>();
+		this.parameters = new HashMap<String, String>();
 		this.body = new char[0];
 	}
 
@@ -87,7 +87,7 @@ public abstract class HttpRequest {
 	 */
 	public Map<String, String> getHeader() {
 		// Lets return the unmodifable view of the header map
-		return Collections.unmodifiableMap(header);
+		return Collections.unmodifiableMap(parameters);
 	}
 
 	/**
@@ -174,7 +174,7 @@ public abstract class HttpRequest {
 					value = value.trim();
 
 					// Now lets put the key=>value mapping to the header map
-					request.header.put(key, value);
+					request.parameters.put(key, value);
 				}
 
 				// Processed one more line, now lets read another header line
@@ -184,7 +184,7 @@ public abstract class HttpRequest {
 
 			int contentLength = 0;
 			try {
-				contentLength = Integer.parseInt(request.header
+				contentLength = Integer.parseInt(request.parameters
 						.get(Protocol.CONTENT_LENGTH.toLowerCase()));
 			} catch (Exception e) {
 				
@@ -195,6 +195,7 @@ public abstract class HttpRequest {
 				reader.read(request.body);
 			}
 
+			request.finishInitialization();
 			return request;
 		} catch (ClassNotFoundException e) {
 			
@@ -216,7 +217,7 @@ public abstract class HttpRequest {
 		buffer.append(this.version);
 		buffer.append(Protocol.LF);
 
-		for (Map.Entry<String, String> entry : this.header.entrySet()) {
+		for (Map.Entry<String, String> entry : this.parameters.entrySet()) {
 			buffer.append(entry.getKey());
 			buffer.append(Protocol.SEPERATOR);
 			buffer.append(Protocol.SPACE);
@@ -229,5 +230,5 @@ public abstract class HttpRequest {
 		return buffer.toString();
 	}
 
-	public abstract HttpResponse generateResponse(String rootDirectory) throws ProtocolException;
+	public abstract void finishInitialization();
 }
