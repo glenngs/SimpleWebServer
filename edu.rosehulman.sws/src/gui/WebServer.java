@@ -265,7 +265,9 @@ public class WebServer extends JFrame {
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				new WebServer().setVisible(true);
+				WebServer s = new WebServer();
+				s.setVisible(true);
+				s.butStartServer.doClick();
 			}
 		});
 	}
