@@ -1,0 +1,728 @@
+Received request from: /127.0.0.1:61210
+Request Details: 
+----------- Header ----------------
+GET /basic HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:61216
+Request Details: 
+----------- Header ----------------
+GET /basic HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:61245
+Request Details: 
+----------- Header ----------------
+GET /basic HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:61300
+Request Details: 
+----------- Header ----------------
+GET /basic/GetTest HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:61637
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /0:0:0:0:0:0:0:1:61656
+Request Details: 
+----------- Header ----------------
+GET /basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+cookie: ai_user=41385c51fb9f48bcafc8a542bb760c50|2015-03-12T20:08:47.7988973+00:00; ai_session=4b7b7bd7e2df4feb9d5e408cc70677ad|2015-03-17T16:12:12.142Z|2015-03-17T16:12:39.615Z
+host: localhost:8080
+connection: keep-alive
+cache-control: max-age=0
+accept-encoding: gzip, deflate, sdch
+accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+user-agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:61710
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:61717
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:61723
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:61730
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:61736
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:61742
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:61748
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:61754
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:61760
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:61927
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:61938
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:61945
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:61946
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:61983
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /0:0:0:0:0:0:0:1:61990
+Request Details: 
+----------- Header ----------------
+GET /basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+cookie: ai_user=41385c51fb9f48bcafc8a542bb760c50|2015-03-12T20:08:47.7988973+00:00; ai_session=4b7b7bd7e2df4feb9d5e408cc70677ad|2015-03-17T16:12:12.142Z|2015-03-17T16:12:39.615Z
+host: localhost:8080
+connection: keep-alive
+cache-control: max-age=0
+accept-encoding: gzip, deflate, sdch
+accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+user-agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:61992
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:61999
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /0:0:0:0:0:0:0:1:61991
+Request Details: 
+----------- Header ----------------
+GET /basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+cookie: ai_user=41385c51fb9f48bcafc8a542bb760c50|2015-03-12T20:08:47.7988973+00:00; ai_session=4b7b7bd7e2df4feb9d5e408cc70677ad|2015-03-17T16:12:12.142Z|2015-03-17T16:12:39.615Z
+host: localhost:8080
+connection: keep-alive
+cache-control: max-age=0
+accept-encoding: gzip, deflate, sdch
+accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+user-agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:62027
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:62030
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:62035
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:62037
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:62042
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /0:0:0:0:0:0:0:1:62044
+Request Details: 
+----------- Header ----------------
+GET /basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+cookie: ai_user=41385c51fb9f48bcafc8a542bb760c50|2015-03-12T20:08:47.7988973+00:00; ai_session=4b7b7bd7e2df4feb9d5e408cc70677ad|2015-03-17T16:12:12.142Z|2015-03-17T16:12:39.615Z
+host: localhost:8080
+connection: keep-alive
+cache-control: max-age=0
+accept-encoding: gzip, deflate, sdch
+accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+user-agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:62047
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:62052
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /0:0:0:0:0:0:0:1:62045
+Request Details: 
+----------- Header ----------------
+GET /basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+cookie: ai_user=41385c51fb9f48bcafc8a542bb760c50|2015-03-12T20:08:47.7988973+00:00; ai_session=4b7b7bd7e2df4feb9d5e408cc70677ad|2015-03-17T16:12:12.142Z|2015-03-17T16:12:39.615Z
+host: localhost:8080
+connection: keep-alive
+cache-control: max-age=0
+accept-encoding: gzip, deflate, sdch
+accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+user-agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:62081
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:62343
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:62514
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:62547
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:62554
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /0:0:0:0:0:0:0:1:62560
+Request Details: 
+----------- Header ----------------
+GET /basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+cookie: ai_user=41385c51fb9f48bcafc8a542bb760c50|2015-03-12T20:08:47.7988973+00:00; ai_session=4b7b7bd7e2df4feb9d5e408cc70677ad|2015-03-17T16:12:12.142Z|2015-03-17T16:12:39.615Z
+host: localhost:8080
+connection: keep-alive
+accept-encoding: gzip, deflate, sdch
+accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+user-agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:62563
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:62570
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /0:0:0:0:0:0:0:1:62561
+Request Details: 
+----------- Header ----------------
+GET /basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+cookie: ai_user=41385c51fb9f48bcafc8a542bb760c50|2015-03-12T20:08:47.7988973+00:00; ai_session=4b7b7bd7e2df4feb9d5e408cc70677ad|2015-03-17T16:12:12.142Z|2015-03-17T16:12:39.615Z
+host: localhost:8080
+connection: keep-alive
+cache-control: max-age=0
+accept-encoding: gzip, deflate, sdch
+accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+user-agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
+------------- Body ---------------
+----------------------------------
+
+Received request from: /127.0.0.1:62578
+Request Details: 
+----------- Header ----------------
+GET basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
+Received request from: /0:0:0:0:0:0:0:1:62572
+Request Details: 
+----------- Header ----------------
+GET /basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+cookie: ai_user=41385c51fb9f48bcafc8a542bb760c50|2015-03-12T20:08:47.7988973+00:00; ai_session=4b7b7bd7e2df4feb9d5e408cc70677ad|2015-03-17T16:12:12.142Z|2015-03-17T16:12:39.615Z
+host: localhost:8080
+connection: keep-alive
+cache-control: no-cache
+pragma: no-cache
+accept-encoding: gzip, deflate, sdch
+accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+user-agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
+------------- Body ---------------
+----------------------------------
+
+Received request from: /0:0:0:0:0:0:0:1:62745
+Request Details: 
+----------- Header ----------------
+GET /basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+cookie: ai_user=41385c51fb9f48bcafc8a542bb760c50|2015-03-12T20:08:47.7988973+00:00; ai_session=4b7b7bd7e2df4feb9d5e408cc70677ad|2015-03-17T16:12:12.142Z|2015-03-17T16:12:39.615Z
+host: localhost:8080
+connection: keep-alive
+cache-control: no-cache
+pragma: no-cache
+accept-encoding: gzip, deflate, sdch
+accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+user-agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
+------------- Body ---------------
+----------------------------------
+
+Received request from: /0:0:0:0:0:0:0:1:62746
+Request Details: 
+----------- Header ----------------
+GET /basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+cookie: ai_user=41385c51fb9f48bcafc8a542bb760c50|2015-03-12T20:08:47.7988973+00:00; ai_session=4b7b7bd7e2df4feb9d5e408cc70677ad|2015-03-17T16:12:12.142Z|2015-03-17T16:12:39.615Z
+host: localhost:8080
+connection: keep-alive
+cache-control: no-cache
+pragma: no-cache
+accept-encoding: gzip, deflate, sdch
+accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+user-agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
+------------- Body ---------------
+----------------------------------
+
+Received request from: /0:0:0:0:0:0:0:1:62841
+Request Details: 
+----------- Header ----------------
+GET /basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+cookie: ai_user=41385c51fb9f48bcafc8a542bb760c50|2015-03-12T20:08:47.7988973+00:00; ai_session=4b7b7bd7e2df4feb9d5e408cc70677ad|2015-03-17T16:12:12.142Z|2015-03-17T16:12:39.615Z
+host: localhost:8080
+connection: keep-alive
+cache-control: no-cache
+pragma: no-cache
+accept-encoding: gzip, deflate, sdch
+accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+user-agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
+------------- Body ---------------
+----------------------------------
+
+Received request from: /0:0:0:0:0:0:0:1:62842
+Request Details: 
+----------- Header ----------------
+GET /basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+cookie: ai_user=41385c51fb9f48bcafc8a542bb760c50|2015-03-12T20:08:47.7988973+00:00; ai_session=4b7b7bd7e2df4feb9d5e408cc70677ad|2015-03-17T16:12:12.142Z|2015-03-17T16:12:39.615Z
+host: localhost:8080
+connection: keep-alive
+cache-control: no-cache
+pragma: no-cache
+accept-encoding: gzip, deflate, sdch
+accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+user-agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
+------------- Body ---------------
+----------------------------------
+
+Received request from: /0:0:0:0:0:0:0:1:62870
+Request Details: 
+----------- Header ----------------
+GET /basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+cookie: ai_user=41385c51fb9f48bcafc8a542bb760c50|2015-03-12T20:08:47.7988973+00:00; ai_session=4b7b7bd7e2df4feb9d5e408cc70677ad|2015-03-17T16:12:12.142Z|2015-03-17T16:12:39.615Z
+host: localhost:8080
+connection: keep-alive
+cache-control: no-cache
+pragma: no-cache
+accept-encoding: gzip, deflate, sdch
+accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+user-agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
+------------- Body ---------------
+----------------------------------
+
+Received request from: /0:0:0:0:0:0:0:1:62872
+Request Details: 
+----------- Header ----------------
+GET /basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+cookie: ai_user=41385c51fb9f48bcafc8a542bb760c50|2015-03-12T20:08:47.7988973+00:00; ai_session=4b7b7bd7e2df4feb9d5e408cc70677ad|2015-03-17T16:12:12.142Z|2015-03-17T16:12:39.615Z
+host: localhost:8080
+connection: keep-alive
+cache-control: no-cache
+pragma: no-cache
+accept-encoding: gzip, deflate, sdch
+accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+user-agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
+------------- Body ---------------
+----------------------------------
+
+Received request from: /0:0:0:0:0:0:0:1:62877
+Request Details: 
+----------- Header ----------------
+GET /basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+cookie: ai_user=41385c51fb9f48bcafc8a542bb760c50|2015-03-12T20:08:47.7988973+00:00; ai_session=4b7b7bd7e2df4feb9d5e408cc70677ad|2015-03-17T16:12:12.142Z|2015-03-17T16:12:39.615Z
+host: localhost:8080
+connection: keep-alive
+cache-control: no-cache
+pragma: no-cache
+accept-encoding: gzip, deflate, sdch
+accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+user-agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
+------------- Body ---------------
+----------------------------------
+
+Received request from: /0:0:0:0:0:0:0:1:62881
+Request Details: 
+----------- Header ----------------
+GET /basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+cookie: ai_user=41385c51fb9f48bcafc8a542bb760c50|2015-03-12T20:08:47.7988973+00:00; ai_session=4b7b7bd7e2df4feb9d5e408cc70677ad|2015-03-17T16:12:12.142Z|2015-03-17T16:12:39.615Z
+host: localhost:8080
+connection: keep-alive
+cache-control: no-cache
+pragma: no-cache
+accept-encoding: gzip, deflate, sdch
+accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+user-agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
+------------- Body ---------------
+----------------------------------
+
+Received request from: /0:0:0:0:0:0:0:1:62883
+Request Details: 
+----------- Header ----------------
+GET /basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+cookie: ai_user=41385c51fb9f48bcafc8a542bb760c50|2015-03-12T20:08:47.7988973+00:00; ai_session=4b7b7bd7e2df4feb9d5e408cc70677ad|2015-03-17T16:12:12.142Z|2015-03-17T16:12:39.615Z
+host: localhost:8080
+connection: keep-alive
+cache-control: no-cache
+pragma: no-cache
+accept-encoding: gzip, deflate, sdch
+accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+user-agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
+------------- Body ---------------
+----------------------------------
+
+Received request from: /0:0:0:0:0:0:0:1:62886
+Request Details: 
+----------- Header ----------------
+GET /basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+cookie: ai_user=41385c51fb9f48bcafc8a542bb760c50|2015-03-12T20:08:47.7988973+00:00; ai_session=4b7b7bd7e2df4feb9d5e408cc70677ad|2015-03-17T16:12:12.142Z|2015-03-17T16:12:39.615Z
+host: localhost:8080
+connection: keep-alive
+cache-control: no-cache
+pragma: no-cache
+accept-encoding: gzip, deflate, sdch
+accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+user-agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
+------------- Body ---------------
+----------------------------------
+
+Received request from: /0:0:0:0:0:0:0:1:62887
+Request Details: 
+----------- Header ----------------
+GET /basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+cookie: ai_user=41385c51fb9f48bcafc8a542bb760c50|2015-03-12T20:08:47.7988973+00:00; ai_session=4b7b7bd7e2df4feb9d5e408cc70677ad|2015-03-17T16:12:12.142Z|2015-03-17T16:12:39.615Z
+host: localhost:8080
+connection: keep-alive
+cache-control: no-cache
+pragma: no-cache
+accept-encoding: gzip, deflate, sdch
+accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+user-agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
+------------- Body ---------------
+----------------------------------
+
