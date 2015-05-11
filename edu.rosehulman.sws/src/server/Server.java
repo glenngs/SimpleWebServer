@@ -23,10 +23,16 @@ package server;
 
 import gui.WebServer;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashMap;
 
 /**
  * This represents a welcoming server for the incoming
@@ -42,8 +48,11 @@ public class Server implements Runnable {
 	
 	private long connections;
 	private long serviceTime;
+	private long connectionsMissed;
+	private File log;
+	private HashMap<String,Integer> ipMap;
 	
-	RouteDispatcher dispatch;
+	protected RouteDispatcher dispatch;
 	
 	private WebServer window;
 	/**
@@ -57,13 +66,40 @@ public class Server implements Runnable {
 		this.stop = false;
 		this.connections = 0;
 		this.serviceTime = 0;
+		this.connectionsMissed = 0;
 		this.window = window;
+		this.log = new File(this.rootDirectory + "\\log.txt");
+		ipMap = new HashMap<>();
 		
 		dispatch = new RouteDispatcher(rootDirectory);
 		
 		(new Thread(dispatch)).start();
 	}
 
+	public synchronized void addIpAddress(String ipAddress) {
+		if (!ipMap.containsKey(ipAddress)) {
+			ipMap.put(ipAddress, 0);
+		}
+		ipMap.put(ipAddress, ipMap.get(ipAddress) + 1);
+	}
+	
+	public synchronized void removeIpAddress(String ipAddress) {
+		if (ipMap.containsKey(ipAddress)) {
+			if (ipMap.get(ipAddress) > 1) {
+				ipMap.put(ipAddress, ipMap.get(ipAddress) - 1);
+			} else {
+				ipMap.remove(ipAddress);
+			}
+		}
+	}
+	
+	public synchronized boolean ipAddressOverThreshold(String ipAddress) {
+		if (ipMap.containsKey(ipAddress)) {
+			return ipMap.get(ipAddress) > 10;
+		}
+		return false;
+	}
+	
 	/**
 	 * Gets the root directory for this web server.
 	 * 
@@ -97,6 +133,14 @@ public class Server implements Runnable {
 		return rate;
 	}
 	
+	public synchronized void appendToLog(String text) {
+		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(this.log, true), "utf-8"))) {
+			   writer.write(text);
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			} 
+	}
+	
 	/**
 	 * Increments number of connection by the supplied value.
 	 * Synchronized to be used in threaded environment.
@@ -105,6 +149,12 @@ public class Server implements Runnable {
 	 */
 	public synchronized void incrementConnections(long value) {
 		this.connections += value;
+	}
+	
+	public synchronized void increamentConnectionsMissed() {
+		this.connectionsMissed += 1;
+		System.out.println("Out of memory missed " + this.connectionsMissed);
+		System.out.println("Services made " + this.connections);
 	}
 	
 	/**
@@ -137,8 +187,16 @@ public class Server implements Runnable {
 					break;
 				
 				// Create a handler for this incoming connection and start the handler in a new thread
-				ConnectionHandler handler = new ConnectionHandler(this, connectionSocket);
-				new Thread(handler).start();
+				String ip = connectionSocket.getInetAddress().toString();
+				if (!this.ipAddressOverThreshold(ip)) {
+					this.addIpAddress(ip);
+					ConnectionHandler handler = new ConnectionHandler(this, connectionSocket);
+					new Thread(handler).start();
+				} else {
+					System.out.println("Ignored request");
+					this.increamentConnectionsMissed();
+				}
+				
 			}
 			this.welcomeSocket.close();
 		}

@@ -48,7 +48,6 @@ public class POSTRequest extends HttpRequest {
 	}
 	
 	public void parseParameters() throws UnsupportedEncodingException {
-	    System.out.println(new String(body));
 	    String[] pairs = new String(body).split("&");
 	    for (String pair : pairs) {
 	        int idx = pair.indexOf("=");

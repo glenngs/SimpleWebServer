@@ -61,7 +61,7 @@ public class GETRequest extends HttpRequest {
 		try {
 			parseParameters();
 		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 
