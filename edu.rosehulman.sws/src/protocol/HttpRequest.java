@@ -198,7 +198,6 @@ public abstract class HttpRequest {
 			request.finishInitialization();
 			return request;
 		} catch (ClassNotFoundException e) {
-			
 			System.out.println(e.getStackTrace());
 			System.out.println(methodCall);
 			

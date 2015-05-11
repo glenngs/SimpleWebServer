@@ -88,7 +88,6 @@ public class RouteDispatcher implements Runnable {
 	
 	public void grabPlugins() throws IOException {
 		File dir = new File(this.rootDir);
-		System.out.println(dir.getAbsolutePath());
 		// If directory doesn't exist, create it.
 		if (!dir.exists()) {
 			dir.mkdir();
