@@ -74,6 +74,8 @@ public class Server implements Runnable {
 		dispatch = new RouteDispatcher(rootDirectory);
 		
 		(new Thread(dispatch)).start();
+		System.out.println(Thread.currentThread().getPriority());
+		System.out.println(Thread.MAX_PRIORITY);
 	}
 
 	public synchronized void addIpAddress(String ipAddress) {
