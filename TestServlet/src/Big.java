@@ -16,6 +16,9 @@ public class Big implements IHttpServlet {
 		// Lets get content length in bytes
 		long length = f.length();
 		httpResponse.put(Protocol.CONTENT_LENGTH, length + "");
+		
+		Thread.currentThread().setPriority((int) Math.round(Math.max(Thread.MAX_PRIORITY - Math.log10(length),0)));
+		
 		try {
 			BufferedOutputStream out = httpResponse.getWriter();
 			out.write(Files.readAllBytes(f.toPath()));
