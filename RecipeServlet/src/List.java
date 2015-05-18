@@ -17,7 +17,17 @@ public class List implements IHttpServlet {
 	public void handleResponse(HttpRequest httpRequest,
 			HttpResponse httpResponse) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("<!DOCTYPE html><html><head><title>Recipe List</title></head><body><h1>Here is a list page containing all of our recipes</h1><ul>");
+		
+		String addScript = "<script>"
+				+ "function myFunction() {"
+				+ "var recipeName = prompt(\"Please enter the name of the recipe\", \"recipe1\");"
+				+ "if (recipeName != null) "
+				+ "{"
+				+ "window.location.href = \"Get?name=\" + recipeName;"
+				+ "}"
+				+ "}</script>";
+		
+		sb.append("<!DOCTYPE html><html><head><title>Recipe List</title>" + addScript + "</head><body><h1>Here is a list page containing all of our recipes</h1><br><h2><button onclick=\"myFunction()\">Try it</button></h2><ul>");
 		File dir = new File("recipes");
 		File [] files = dir.listFiles(new FilenameFilter() {
 		    public boolean accept(File dir, String name) {
@@ -27,13 +37,13 @@ public class List implements IHttpServlet {
 
 		for (File rcpfile : files) {
 			String name = RouteDispatcher.stripExtension(rcpfile.getName());
-		    sb.append("<li><a href=\"Get?name=" + URLEncoder.encode(name) + "\">" + name + "</a>" + "</li>");
+		    sb.append("<li><a href=\"Get?name=" + URLEncoder.encode(name) + "\">" + name + "</a><br>" + "<a href=\"Delete?name=" + URLEncoder.encode(name) + "\">" + "delete</a>" + "</li>");
 		}
+		
 		sb.append("</ul></body></html>");
 		
-		
-		
 		String s = sb.toString();
+		
 		// Lets get content length in bytes
 		long length = s.length();
 		httpResponse.put(Protocol.CONTENT_LENGTH, length + "");

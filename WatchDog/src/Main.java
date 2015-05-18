@@ -6,8 +6,8 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 
+import protocol.HttpResponse;
 import gui.WebServer;
-import httpclient.HttpResponse;
 
 public class Main {
 
