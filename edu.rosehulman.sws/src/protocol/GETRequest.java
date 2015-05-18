@@ -51,6 +51,7 @@ public class GETRequest extends HttpRequest {
 	    String[] pairs = query.split("&");
 	    for (String pair : pairs) {
 	        int idx = pair.indexOf("=");
+	        System.out.println(pair);
 	        parameters.put(URLDecoder.decode(pair.substring(0, idx), "UTF-8"), URLDecoder.decode(pair.substring(idx + 1), "UTF-8"));
 	    }
 	    

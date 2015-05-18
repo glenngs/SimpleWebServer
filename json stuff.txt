@@ -1,0 +1,30 @@
+<script>
+function save()
+{
+  var xmlhttp=new XMLHttpRequest();
+  xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    alert(xmlhttp.responseText);
+    }
+  }
+xmlhttp.open(\"PUT\",\"http://localhost:8080/recipe/Put?name=" + URLEncoder.encode(recipeName) + "\",true);
+xmlhttp.setRequestHeader(\"Content-type\",\"application/x-www-form-urlencoded\");
+var ingredients = [];
+for(var i = 0; i < ingredientList.children.length; i++) {
+  ingredients.push(ingredientList.children[i].childNodes[0].value);
+}
+xmlhttp.send(\"{\\\"description\\\":\\\"\" + document.getElementById(\"descriptionArea\").value + \"\\\",\\\"directions\\\":\\\"\" + document.getElementById(\"directionsArea\").value + \"\\\",\\\"ingredients\\\":\" + JSON.stringify(ingredients) + \"}\");
+}
+function addLI() 
+{
+  var ul = document.getElementById(\"ingredientList\");
+  var li = document.createElement(\"li\");
+  var inp = document.createElement(\"input\");
+  var children = ul.children.length + 1;
+  li.setAttribute(\"id\", \"element\"+children);
+  li.appendChild(inp);
+  ul.appendChild(li);
+}
+</script>

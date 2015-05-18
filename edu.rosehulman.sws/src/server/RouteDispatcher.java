@@ -112,7 +112,8 @@ public class RouteDispatcher implements Runnable {
 	}
 
 	public void dispatchRoute(HttpRequest request, HttpResponse response) throws NullPointerException {
-		System.out.println(request.getHeader().get("testWord"));
+		System.out.println(request.getUri());
+		System.out.println(this.routes);
 		this.routes.get(request.getUri()).handleResponse(request, response);
 	}
 
@@ -202,7 +203,7 @@ public class RouteDispatcher implements Runnable {
 		}
 	}
 
-	static String stripExtension(String str) {
+	public static String stripExtension(String str) {
 		if (str == null)
 			return null;
 		int pos = str.lastIndexOf(".");

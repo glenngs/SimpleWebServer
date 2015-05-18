@@ -15,9 +15,15 @@ public class Main {
 		// TODO Auto-generated constructor stub
 	}
 
+	public static Process restartProcess(String jFile, String directory) throws IOException {
+		System.out.println("java -jar \"" + jFile + "\" \"" + directory + "\"");
+		return Runtime.getRuntime().exec("java -jar \"" + jFile + "\" \"" + directory + "\"");
+	}
+	
 	public static void main(String[] args) {
 
 		String directory = args[0];
+		String jFile = args[1];
 
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("GET /basic/BasicServlet HTTP/1.1\r\n");
@@ -29,14 +35,11 @@ public class Main {
 		buffer.append("\r\n");
 
 		String request = buffer.toString();
+	
 
 		try {
 
-			Runtime runTime = Runtime.getRuntime();
-			Process process = runTime
-					.exec("java -jar C:\\Users\\glenngs\\Desktop\\server.jar "
-							+ directory);
-
+			Process process = restartProcess(jFile, directory);
 			while (true) {
 
 				try {
@@ -60,17 +63,13 @@ public class Main {
 
 					if (!response.getStatusLine().equals("HTTP/1.1 200 OK")) {
 						process.destroy();
-						process = runTime
-								.exec("java -jar C:\\Users\\glenngs\\Desktop\\server.jar "
-										+ directory);
+						process = restartProcess(jFile, directory);
 						System.out.println("Restarting murdered thread");
 					}
 					
 				} catch (SocketTimeoutException | ConnectException e) {
 					process.destroy();
-					process = runTime
-							.exec("java -jar C:\\Users\\glenngs\\Desktop\\server.jar "
-									+ directory);
+					process = restartProcess(jFile, directory);
 					System.out.println("Restarting murdered thread");
 				} 
 

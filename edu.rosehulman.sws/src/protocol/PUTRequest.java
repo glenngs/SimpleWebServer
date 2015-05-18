@@ -52,6 +52,24 @@ public class PUTRequest extends HttpRequest {
 	public PUTRequest() {
 		super();
 	}
+	
+
+	public void parseParametersURIParameters() throws UnsupportedEncodingException {
+	    if (!this.uri.contains("?")) {
+	    	return;
+	    }
+	    String[] split = this.uri.split("\\?");
+	    this.uri = split[0];
+	    String query = split[1];
+	    String[] pairs = query.split("&");
+	    for (String pair : pairs) {
+	        int idx = pair.indexOf("=");
+	        System.out.println(pair);
+	        parameters.put(URLDecoder.decode(pair.substring(0, idx), "UTF-8"), URLDecoder.decode(pair.substring(idx + 1), "UTF-8"));
+	    }
+	    
+	    
+	}
 
 	public void parseParameters() throws UnsupportedEncodingException {
 		String[] lines = new String(body).split(System.getProperty("line.separator"));
@@ -76,6 +94,7 @@ public class PUTRequest extends HttpRequest {
 	
 	public void finishInitialization() {
 		try {
+			parseParametersURIParameters();
 			parseParameters();
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();

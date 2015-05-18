@@ -726,3 +726,15 @@ user-agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like 
 ------------- Body ---------------
 ----------------------------------
 
+Received request from: /127.0.0.1:50245
+Request Details: 
+----------- Header ----------------
+GET /basic/BasicServlet HTTP/1.1
+accept-language: en-US,en;q=0.8
+host: http://localhost:8080
+connection: Keep-Alive
+user-agent: HttpTestClient/1.0
+accept: text/html,text/plain,application/xml,application/json
+------------- Body ---------------
+----------------------------------
+
